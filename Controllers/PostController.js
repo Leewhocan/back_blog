@@ -1,9 +1,15 @@
 import PostModel from "../models/Post.js";
-
+//{ tags: { $in: [postsTag] } }
 export const getAll = async (req, res) => {
   try {
-    const posts = await PostModel.find().populate("user").exec();
-    res.json(posts);
+    const postsTag = req.query.tag;
+
+    const posts = await PostModel.find(
+      !postsTag ? {} : { tags: { $in: [postsTag] } }
+    )
+      .populate("user")
+      .exec();
+    return res.json(posts);
   } catch (err) {
     console.log(err);
     res.status(500).json({
@@ -35,6 +41,39 @@ export const getOne = async (req, res) => {
         res.json(doc);
       })
 
+      .catch((err) => {
+        if (err) {
+          return res
+            .status(403)
+            .json({ message: "Пост не был найден", error: err });
+        }
+      });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Не удалось получить статьи",
+    });
+  }
+};
+
+export const getByTag = async (req, res) => {
+  try {
+    const postsTag = req.params.tag;
+    PostModel.find(
+      {
+        tags: { $in: [postsTag] },
+      },
+      { returnDocument: "after" }
+    )
+      .populate("user")
+      .then((doc) => {
+        if (!doc) {
+          return res
+            .status(404)
+            .json({ message: "Не удалось вернуть статью", error: err });
+        }
+        res.json(doc);
+      })
       .catch((err) => {
         if (err) {
           return res
@@ -87,7 +126,7 @@ export const create = async (req, res) => {
     const doc = new PostModel({
       title: req.body.title,
       text: req.body.text,
-      ImageUrl: req.body.ImageUrl,
+      imageUrl: req.body.imageUrl,
       tags: req.body.tags,
       user: req.userId,
     });
@@ -130,7 +169,7 @@ export const update = async (req, res) => {
         title: req.body.title,
         text: req.body.text,
         tags: req.body.tags,
-        ImageUrl: req.body.ImageUrl,
+        imageUrl: req.body.imageUrl,
         user: req.userId,
       }
     );

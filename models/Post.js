@@ -24,7 +24,7 @@ const PostSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    ImageUrl: String, // если хотим сказать что не уникально указываем сразу String
+    imageUrl: String, // если хотим сказать что не уникально указываем сразу String
   },
   {
     timestamps: true,
