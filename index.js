@@ -7,7 +7,11 @@ import {
   PostCreateValidator,
 } from "./validation.js";
 import { checkAuth, handleValodationsErrors } from "./utils/index.js";
-import { UserController, PostController } from "./Controllers/index.js";
+import {
+  UserController,
+  PostController,
+  CommentController,
+} from "./Controllers/index.js";
 import cors from "cors";
 mongoose
   .connect(
@@ -36,9 +40,8 @@ const upload = multer({ storage });
 app.use(express.json());
 app.use(cors());
 app.use("/uploads", express.static("uploads"));
-
 app.get("/", (req, res) => {
-  res.send("112 Hello world");
+  res.send("hello");
 });
 
 app.post(
@@ -62,7 +65,9 @@ app.post("/upload", checkAuth, upload.single("image"), (req, res) => {
 });
 app.get("/tags", PostController.getLastTags);
 app.get("/posts", PostController.getAll);
+
 app.get("/posts/:id", PostController.getOne);
+app.post("/posts/:id", checkAuth, CommentController.createCommentary);
 app.post(
   "/posts",
   checkAuth,

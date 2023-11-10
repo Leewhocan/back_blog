@@ -1,5 +1,6 @@
+import Commentary from "../models/Commentary.js";
 import PostModel from "../models/Post.js";
-//{ tags: { $in: [postsTag] } }
+import User from "../models/User.js";
 export const getAll = async (req, res) => {
   try {
     const postsTag = req.query.tag;
@@ -9,6 +10,7 @@ export const getAll = async (req, res) => {
     )
       .populate("user")
       .exec();
+
     return res.json(posts);
   } catch (err) {
     console.log(err);
@@ -22,36 +24,27 @@ export const getOne = async (req, res) => {
   try {
     const postId = req.params.id;
 
-    PostModel.findOneAndUpdate(
-      {
-        _id: postId,
-      },
+    const doc = await PostModel.findOneAndUpdate(
+      { _id: postId },
       {
         $inc: { viewsCount: 1 },
       },
-      { returnDocument: "after" }
+      { new: true }
     )
-      .populate("user")
-      .then((doc) => {
-        if (!doc) {
-          return res
-            .status(404)
-            .json({ message: "Не удалось вернуть статью", error: err });
-        }
-        res.json(doc);
+      .populate({
+        path: "user",
+        model: User,
       })
-
-      .catch((err) => {
-        if (err) {
-          return res
-            .status(403)
-            .json({ message: "Пост не был найден", error: err });
-        }
+      .populate({
+        path: "commentary.user",
+        model: User,
       });
+
+    res.json(doc);
   } catch (err) {
     console.log(err);
     res.status(500).json({
-      message: "Не удалось получить статьи",
+      message: "Can not find post",
     });
   }
 };
@@ -59,6 +52,7 @@ export const getOne = async (req, res) => {
 export const getByTag = async (req, res) => {
   try {
     const postsTag = req.params.tag;
+
     PostModel.find(
       {
         tags: { $in: [postsTag] },
@@ -181,3 +175,5 @@ export const update = async (req, res) => {
     });
   }
 };
+
+// plane celender modif boolean array inset faces и через точку subdivie делаем углы и soldididy

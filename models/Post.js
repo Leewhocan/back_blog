@@ -24,7 +24,11 @@ const PostSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    imageUrl: String, // если хотим сказать что не уникально указываем сразу String
+    commentary: {
+      type: Array,
+      default: [],
+    },
+    imageUrl: String,
   },
   {
     timestamps: true,

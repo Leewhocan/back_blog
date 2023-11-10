@@ -1,0 +1,685 @@
+Statistical profiling result from isolate-0x158008000-26474-v8.log, (648 ticks, 5 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+     17    2.6%          /usr/lib/system/libsystem_pthread.dylib
+     12    1.9%          /usr/lib/system/libsystem_c.dylib
+     10    1.5%          /usr/lib/system/libsystem_malloc.dylib
+      9    1.4%          /usr/lib/libc++.1.dylib
+      1    0.2%          /usr/lib/system/libsystem_platform.dylib
+      1    0.2%          /usr/lib/system/libsystem_kernel.dylib
+
+ [JavaScript]:
+   ticks  total  nonlib   name
+      4    0.6%    0.7%  LazyCompile: *resolve node:path:1091:10
+      1    0.2%    0.2%  LazyCompile: *normalizeString node:path:66:25
+      1    0.2%    0.2%  Function: ^write node:buffer:593:12
+      1    0.2%    0.2%  Function: ^peek node:internal/linkedlist:10:14
+      1    0.2%    0.2%  Function: ^onMessage /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection.js:130:14
+      1    0.2%    0.2%  Function: ^getValidatedString /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:3046:28
+      1    0.2%    0.2%  Function: ^get loadBalanced /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection.js:95:21
+      1    0.2%    0.2%  Function: ^deserializeObject /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:2590:27
+
+ [C++]:
+   ticks  total  nonlib   name
+    231   35.6%   38.6%  t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+    200   30.9%   33.4%  T node::contextify::ContextifyContext::CompileFunction(v8::FunctionCallbackInfo<v8::Value> const&)
+     61    9.4%   10.2%  T _posix_spawn
+     25    3.9%    4.2%  T _proc_track_dirty
+     13    2.0%    2.2%  T _kdebug_typefilter
+      9    1.4%    1.5%  t node::fs::Open(v8::FunctionCallbackInfo<v8::Value> const&)
+      6    0.9%    1.0%  t void node::Buffer::(anonymous namespace)::StringSlice<(node::encoding)1>(v8::FunctionCallbackInfo<v8::Value> const&)
+      3    0.5%    0.5%  t std::__1::ostreambuf_iterator<char, std::__1::char_traits<char> > std::__1::__pad_and_output<char, std::__1::char_traits<char> >(std::__1::ostreambuf_iterator<char, std::__1::char_traits<char> >, char const*, char const*, char const*, std::__1::ios_base&, char)
+      3    0.5%    0.5%  t _udec
+      2    0.3%    0.3%  t node::fs::InternalModuleStat(v8::FunctionCallbackInfo<v8::Value> const&)
+      2    0.3%    0.3%  t node::EnvGetter(v8::Local<v8::Name>, v8::PropertyCallbackInfo<v8::Value> const&)
+      2    0.3%    0.3%  T node::fs::Close(v8::FunctionCallbackInfo<v8::Value> const&)
+      2    0.3%    0.3%  T _task_restartable_ranges_synchronize
+      2    0.3%    0.3%  T _semaphore_destroy
+      2    0.3%    0.3%  T _mach_vm_allocate
+      2    0.3%    0.3%  T _host_request_notification
+      2    0.3%    0.3%  T __simple_sappend
+      2    0.3%    0.3%  T __kernelrpc_mach_vm_allocate_trap
+      1    0.2%    0.2%  t void std::__1::__tree_balance_after_insert<std::__1::__tree_node_base<void*>*>(std::__1::__tree_node_base<void*>*, std::__1::__tree_node_base<void*>*)
+      1    0.2%    0.2%  t void node::Buffer::(anonymous namespace)::StringWrite<(node::encoding)1>(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.2%    0.2%  t void node::Buffer::(anonymous namespace)::StringSlice<(node::encoding)4>(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.2%    0.2%  t std::__1::__hash_table<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long> >::__rehash(unsigned long)
+      1    0.2%    0.2%  t node::fs::Read(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.2%    0.2%  t node::cares_wrap::(anonymous namespace)::GetAddrInfo(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.2%    0.2%  t __simple_asl_escape_key
+      1    0.2%    0.2%  t __pthread_tsd_cleanup
+      1    0.2%    0.2%  T node::loader::ModuleWrap::New(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.2%    0.2%  T node::binding::GetInternalBinding(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.2%    0.2%  T node::binding::DLOpen(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.2%    0.2%  T _semaphore_create
+      1    0.2%    0.2%  T _host_create_mach_voucher
+
+ [Summary]:
+   ticks  total  nonlib   name
+     11    1.7%    1.8%  JavaScript
+    582   89.8%   97.3%  C++
+     32    4.9%    5.4%  GC
+     50    7.7%          Shared libraries
+      5    0.8%          Unaccounted
+
+ [C++ entry points]:
+   ticks    cpp   total   name
+    214   43.2%   33.0%  t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+    200   40.4%   30.9%  T node::contextify::ContextifyContext::CompileFunction(v8::FunctionCallbackInfo<v8::Value> const&)
+     21    4.2%    3.2%  T _proc_track_dirty
+     12    2.4%    1.9%  T node::loader::ModuleWrap::Evaluate(v8::FunctionCallbackInfo<v8::Value> const&)
+     12    2.4%    1.9%  T _kdebug_typefilter
+      9    1.8%    1.4%  t node::fs::Open(v8::FunctionCallbackInfo<v8::Value> const&)
+      6    1.2%    0.9%  t void node::Buffer::(anonymous namespace)::StringSlice<(node::encoding)1>(v8::FunctionCallbackInfo<v8::Value> const&)
+      3    0.6%    0.5%  t std::__1::ostreambuf_iterator<char, std::__1::char_traits<char> > std::__1::__pad_and_output<char, std::__1::char_traits<char> >(std::__1::ostreambuf_iterator<char, std::__1::char_traits<char> >, char const*, char const*, char const*, std::__1::ios_base&, char)
+      2    0.4%    0.3%  t node::fs::InternalModuleStat(v8::FunctionCallbackInfo<v8::Value> const&)
+      2    0.4%    0.3%  t node::EnvGetter(v8::Local<v8::Name>, v8::PropertyCallbackInfo<v8::Value> const&)
+      2    0.4%    0.3%  t _udec
+      2    0.4%    0.3%  T node::fs::Close(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.2%    0.2%  t void std::__1::__tree_balance_after_insert<std::__1::__tree_node_base<void*>*>(std::__1::__tree_node_base<void*>*, std::__1::__tree_node_base<void*>*)
+      1    0.2%    0.2%  t void node::Buffer::(anonymous namespace)::StringWrite<(node::encoding)1>(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.2%    0.2%  t void node::Buffer::(anonymous namespace)::StringSlice<(node::encoding)4>(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.2%    0.2%  t std::__1::__hash_table<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long> >::__rehash(unsigned long)
+      1    0.2%    0.2%  t node::fs::Read(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.2%    0.2%  t node::cares_wrap::(anonymous namespace)::GetAddrInfo(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.2%    0.2%  T node::loader::ModuleWrap::New(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.2%    0.2%  T node::binding::GetInternalBinding(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.2%    0.2%  T node::binding::DLOpen(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.2%    0.2%  T _semaphore_destroy
+
+ [Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 1.0% are not shown.
+
+   ticks parent  name
+    231   35.6%  t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+     39   16.9%    Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+     35   89.7%      Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      3    8.6%        Function: ~<anonymous> node:tls:1:1
+      3  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      3  100.0%            Function: ^compileForPublicLoader node:internal/bootstrap/loaders:246:25
+      3    8.6%        Function: ~<anonymous> node:internal/modules/esm/loader:1:1
+      3  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      3  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      3    8.6%        Function: ~<anonymous> node:http:1:1
+      3  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      3  100.0%            LazyCompile: ~compileForPublicLoader node:internal/bootstrap/loaders:246:25
+      3    8.6%        Function: ~<anonymous> node:crypto:1:1
+      3  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      3  100.0%            Function: ^compileForPublicLoader node:internal/bootstrap/loaders:246:25
+      2    5.7%        LazyCompile: ~initCJSParse node:internal/modules/esm/translators:58:28
+      2  100.0%          LazyCompile: ~commonjsStrategy node:internal/modules/esm/translators:148:60
+      2  100.0%            LazyCompile: ~moduleProvider node:internal/modules/esm/loader:322:28
+      2    5.7%        Function: ~<anonymous> node:internal/process/esm_loader:1:1
+      2  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      2  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      2    5.7%        Function: ~<anonymous> node:internal/modules/esm/fetch_module:1:1
+      2  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      2  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      1    2.9%        LazyCompile: ~lazyRequire node:internal/crypto/util:67:21
+      1  100.0%          LazyCompile: ~get node:crypto:287:8
+      1  100.0%            t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    2.9%        LazyCompile: ~lazyLoadStreams node:fs:2858:25
+      1  100.0%          LazyCompile: ~get ReadStream node:fs:3001:17
+      1  100.0%            t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    2.9%        Function: ~<anonymous> node:tty:1:1
+      1  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%            LazyCompile: ~compileForPublicLoader node:internal/bootstrap/loaders:246:25
+      1    2.9%        Function: ~<anonymous> node:internal/modules/esm/module_map:1:1
+      1  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      1    2.9%        Function: ~<anonymous> node:internal/modules/esm/get_source:1:1
+      1  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      1    2.9%        Function: ~<anonymous> node:internal/modules/esm/get_format:1:1
+      1  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      1    2.9%        Function: ~<anonymous> node:internal/crypto/util:1:1
+      1  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      1    2.9%        Function: ~<anonymous> node:internal/crypto/hkdf:1:1
+      1  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      1    2.9%        Function: ~<anonymous> node:internal/child_process:1:1
+      1  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      1    2.9%        Function: ~<anonymous> node:dns:1:1
+      1  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%            Function: ^compileForPublicLoader node:internal/bootstrap/loaders:246:25
+      1    2.9%        Function: ~<anonymous> node:dgram:1:1
+      1  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      1    2.9%        Function: ~<anonymous> node:cluster:1:1
+      1  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      1    2.9%        Function: ~<anonymous> node:child_process:1:1
+      1  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%            Function: ^compileForPublicLoader node:internal/bootstrap/loaders:246:25
+      1    2.9%        Function: ~<anonymous> node:assert:1:1
+      1  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%            Function: ^compileForPublicLoader node:internal/bootstrap/loaders:246:25
+      1    2.9%        Function: ~<anonymous> node:_http_server:1:1
+      1  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      1    2.9%        Function: ~<anonymous> node:_http_common:1:1
+      1  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      1    2.9%        Function: ~<anonymous> node:_http_client:1:1
+      1  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      4   10.3%      Function: ^compileForPublicLoader node:internal/bootstrap/loaders:246:25
+      4  100.0%        Function: ^loadNativeModule node:internal/modules/cjs/helpers:44:26
+      4  100.0%          Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      4  100.0%            Function: ^Module.require node:internal/modules/cjs/loader:997:36
+     16    6.9%    t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    6.3%      t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%        Function: ^realpathSync node:fs:2425:22
+      1  100.0%          Function: ^toRealPath node:internal/modules/cjs/loader:393:20
+      1  100.0%            Function: ^tryFile node:internal/modules/cjs/loader:384:17
+      1    6.3%      LazyCompile: ~processCiphers node:internal/tls/secure-context:91:24
+      1  100.0%        LazyCompile: ~configSecureContext node:internal/tls/secure-context:120:29
+      1  100.0%          LazyCompile: ~createSecureContext node:_tls_common:99:29
+      1  100.0%            LazyCompile: ~connect node:_tls_wrap:1599:35
+      1    6.3%      LazyCompile: ~populateMaps /Users/lee/Desktop/react/blog/node_modules/mime-types/index.js:154:23
+      1  100.0%        Function: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mime-types/index.js:1:1
+      1  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1    6.3%      LazyCompile: ~isIPv4 node:internal/net:31:16
+      1  100.0%        LazyCompile: ~isIP node:internal/net:39:14
+      1  100.0%          LazyCompile: ~parseSslOptions /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connect.js:218:25
+      1  100.0%            LazyCompile: ~makeConnection /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connect.js:237:24
+      1    6.3%      LazyCompile: ~finalizeResolution node:internal/modules/esm/resolve:397:28
+      1  100.0%        LazyCompile: ~moduleResolve node:internal/modules/esm/resolve:988:23
+      1  100.0%          LazyCompile: ~defaultResolve node:internal/modules/esm/resolve:1128:30
+      1  100.0%            LazyCompile: ~resolve node:internal/modules/esm/loader:556:16
+      1    6.3%      LazyCompile: ~executeOperationAsync /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/operations/execute_operation.js:15:37
+      1  100.0%        t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%          t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%            Function: ^processTicksAndRejections node:internal/process/task_queues:68:35
+      1    6.3%      LazyCompile: ~createToken /Users/lee/Desktop/react/blog/node_modules/semver/internal/re.js:39:21
+      1  100.0%        Function: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/semver/internal/re.js:1:1
+      1  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1    6.3%      LazyCompile: ~check /Users/lee/Desktop/react/blog/node_modules/express-validator/src/middlewares/check.js:7:15
+      1  100.0%        LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/express-validator/src/middlewares/validation-chain-builders.js:12:12
+      1  100.0%          Script: ~<anonymous> file:///Users/lee/Desktop/react/blog/validation.js:1:1
+      1  100.0%            t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    6.3%      LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/helpers/pluralize.js:87:34
+      1  100.0%        t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%          LazyCompile: ~pluralize /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/helpers/pluralize.js:83:19
+      1  100.0%            LazyCompile: ~exports.toCollectionName /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/utils.js:44:36
+      1    6.3%      LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/@mapbox/node-pre-gyp/lib/util/versioning.js:23:36
+      1  100.0%        t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%          Function: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/@mapbox/node-pre-gyp/lib/util/versioning.js:1:1
+      1  100.0%            Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1    6.3%      LazyCompile: *realpathSync node:fs:2425:22
+      1  100.0%        Function: ^toRealPath node:internal/modules/cjs/loader:393:20
+      1  100.0%          Function: ^tryFile node:internal/modules/cjs/loader:384:17
+      1  100.0%            Function: ^tryExtensions node:internal/modules/cjs/loader:400:23
+      1    6.3%      Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      1  100.0%        LazyCompile: ~getDefaultEcdhCurve node:internal/tls/secure-context:41:29
+      1  100.0%          LazyCompile: ~configSecureContext node:internal/tls/secure-context:120:29
+      1  100.0%            LazyCompile: ~createSecureContext node:_tls_common:99:29
+      1    6.3%      Function: ^hasServer /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology_description.js:236:14
+      1  100.0%        Function: ^updateServers /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:452:23
+      1  100.0%          LazyCompile: ~serverUpdateHandler /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:290:24
+      1  100.0%            Function: ^<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:444:53
+      1    6.3%      Function: ^command /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection.js:262:12
+      1  100.0%        Function: ^<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection.js:41:51
+      1  100.0%          Function: ^<anonymous> node:internal/util:346:24
+      1  100.0%            t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    6.3%      Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      1  100.0%        Function: ^Module.require node:internal/modules/cjs/loader:997:36
+      1  100.0%          Function: ^require node:internal/modules/cjs/helpers:101:31
+      1  100.0%            Function: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/error/index.js:1:1
+      1    6.3%      Function: ^FastBuffer node:internal/buffer:958:14
+      1  100.0%        Function: ^alloc node:buffer:360:30
+      1  100.0%          Function: ^allocate /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:138:13
+      1  100.0%            Function: ^serialize /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:4040:19
+      8    3.5%    Function: ^deserializeObject /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:2590:27
+      6   75.0%      Function: ^internalDeserialize /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:2565:29
+      6  100.0%        Function: ^deserialize /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:4062:21
+      5   83.3%          Function: ^parse /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/commands.js:431:10
+      4   80.0%            Function: ^onMessage /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection.js:130:14
+      1   20.0%            LazyCompile: ~onMessage /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection.js:130:14
+      1   16.7%          LazyCompile: ~parse /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/commands.js:224:10
+      1  100.0%            LazyCompile: ~onMessage /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection.js:130:14
+      1   12.5%      LazyCompile: ~internalDeserialize /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:2565:29
+      1  100.0%        LazyCompile: ~deserialize /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:4062:21
+      1  100.0%          LazyCompile: ~parse /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/commands.js:431:10
+      1  100.0%            LazyCompile: ~onMessage /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection.js:130:14
+      1   12.5%      Function: ^deserializeObject /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:2590:27
+      1  100.0%        Function: ^deserializeObject /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:2590:27
+      1  100.0%          Function: ^internalDeserialize /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:2565:29
+      1  100.0%            Function: ^deserialize /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:4062:21
+      4    1.7%    LazyCompile: ~configSecureContext node:internal/tls/secure-context:120:29
+      4  100.0%      LazyCompile: ~createSecureContext node:_tls_common:99:29
+      4  100.0%        LazyCompile: ~connect node:_tls_wrap:1599:35
+      4  100.0%          LazyCompile: ~makeConnection /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connect.js:237:24
+      4  100.0%            LazyCompile: ~connect /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connect.js:32:17
+      4    1.7%    LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      4  100.0%      LazyCompile: ~nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      2   50.0%        LazyCompile: ~initializeCJSLoader node:internal/bootstrap/pre_execution:477:29
+      2  100.0%          LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:28:36
+      2  100.0%            Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1   25.0%        LazyCompile: ~initializeSourceMapsHandlers node:internal/bootstrap/pre_execution:516:38
+      1  100.0%          LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:28:36
+      1  100.0%            Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1   25.0%        Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      3    1.3%    LazyCompile: ~pbkdf2Sync node:internal/crypto/pbkdf2:68:20
+      3  100.0%      LazyCompile: ~HI /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/auth/scram.js:221:12
+      3  100.0%        LazyCompile: ~continueScramConversation /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/auth/scram.js:88:41
+      3  100.0%          LazyCompile: ~executeScram /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/auth/scram.js:74:28
+      3  100.0%            t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      3    1.3%    LazyCompile: ~command /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection.js:262:12
+      2   66.7%      LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection.js:41:51
+      2  100.0%        LazyCompile: ~<anonymous> node:internal/util:346:24
+      2  100.0%          t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      2  100.0%            LazyCompile: ~fn node:internal/util:345:14
+      1   33.3%      LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/server.js:198:40
+      1  100.0%        LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection_pool.js:319:23
+      1  100.0%          LazyCompile: ~processWaitQueue /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection_pool.js:503:21
+      1  100.0%            LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection_pool.js:180:26
+      3    1.3%    LazyCompile: ~Connection /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection.js:39:16
+      3  100.0%      LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connect.js:33:63
+      3  100.0%        LazyCompile: ~callback /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connect.js:249:31
+      3  100.0%          LazyCompile: ~connectHandler /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connect.js:293:28
+      3  100.0%            Function: ^onceWrapper node:events:636:21
+      3    1.3%    Function: ^readPackage node:internal/modules/cjs/loader:290:21
+      2   66.7%      Function: ^resolveExports node:internal/modules/cjs/loader:472:24
+      2  100.0%        Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      2  100.0%          Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
+      2  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      1   33.3%      Function: ^readPackageScope node:internal/modules/cjs/loader:321:26
+      1  100.0%        Function: ^trySelf node:internal/modules/cjs/loader:441:17
+      1  100.0%          Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
+      1  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      3    1.3%    Function: ^URL node:internal/url:621:14
+      2   66.7%      Function: ^URL node:internal/url:621:14
+      1   50.0%        LazyCompile: ~packageResolve node:internal/modules/esm/resolve:897:24
+      1  100.0%          LazyCompile: ~moduleResolve node:internal/modules/esm/resolve:988:23
+      1  100.0%            LazyCompile: ~defaultResolve node:internal/modules/esm/resolve:1128:30
+      1   50.0%        LazyCompile: ~getPackageScopeConfig node:internal/modules/esm/resolve:253:31
+      1  100.0%          Function: ^getPackageType node:internal/modules/esm/resolve:848:24
+      1  100.0%            LazyCompile: ~getFileProtocolModuleFormat node:internal/modules/esm/get_format:51:37
+      1   33.3%      LazyCompile: ~defaultResolve node:internal/modules/esm/resolve:1128:30
+      1  100.0%        LazyCompile: ~resolve node:internal/modules/esm/loader:556:16
+      1  100.0%          LazyCompile: ~getModuleJob node:internal/modules/esm/loader:285:21
+      1  100.0%            LazyCompile: ~<anonymous> node:internal/modules/esm/module_job:78:41
+
+    200   30.9%  T node::contextify::ContextifyContext::CompileFunction(v8::FunctionCallbackInfo<v8::Value> const&)
+    197   98.5%    Function: ^compileFunction node:vm:308:25
+    197  100.0%      Function: ^wrapSafe node:internal/modules/cjs/loader:1017:18
+    197  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+    190   96.4%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+    190  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      7    3.6%          LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      7  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      3    1.5%    LazyCompile: ~compileFunction node:vm:308:25
+      3  100.0%      LazyCompile: ~wrapSafe node:internal/modules/cjs/loader:1017:18
+      3  100.0%        LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1059:37
+      3  100.0%          LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      3  100.0%            LazyCompile: ~Module.load node:internal/modules/cjs/loader:969:33
+
+     61    9.4%  T _posix_spawn
+
+     25    3.9%  T _proc_track_dirty
+      2    8.0%    Function: ~<anonymous> node:internal/fs/rimraf:1:1
+      2  100.0%      Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      2  100.0%        Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      2  100.0%          Function: ~<anonymous> node:internal/fs/promises:1:1
+      2  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1    4.0%    t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%      Function: ^processTicksAndRejections node:internal/process/task_queues:68:35
+      1    4.0%    LazyCompile: ~writeCommand /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/message_stream.js:40:17
+      1  100.0%      Function: ^write /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection.js:417:15
+      1  100.0%        Function: ^command /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection.js:262:12
+      1  100.0%          LazyCompile: ~checkServer /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/monitor.js:141:21
+      1  100.0%            LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/monitor.js:225:12
+      1    4.0%    LazyCompile: ~setupWarningHandler node:internal/bootstrap/pre_execution:142:29
+      1  100.0%      LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:28:36
+      1  100.0%        Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    4.0%    LazyCompile: ~resume node:internal/streams/readable:977:16
+      1  100.0%      LazyCompile: ~Readable.resume node:internal/streams/readable:963:37
+      1  100.0%        LazyCompile: ~Socket.resume node:net:652:35
+      1  100.0%          Function: ^Readable.on node:internal/streams/readable:874:33
+      1  100.0%            LazyCompile: ~Readable.pipe node:internal/streams/readable:654:35
+      1    4.0%    LazyCompile: ~resolveExports node:internal/modules/cjs/loader:472:24
+      1  100.0%      Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      1  100.0%        LazyCompile: ~Module._resolveFilename node:internal/modules/cjs/loader:848:35
+      1  100.0%          LazyCompile: ~Module._load node:internal/modules/cjs/loader:757:24
+      1  100.0%            Function: ^Module.require node:internal/modules/cjs/loader:997:36
+      1    4.0%    LazyCompile: ~primordials.SafePromisePrototypeFinally node:internal/per_context/primordials:418:43
+      1  100.0%      LazyCompile: ~readFile node:internal/fs/promises:788:24
+      1  100.0%        t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    4.0%    LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:28:36
+      1  100.0%      Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    4.0%    LazyCompile: ~onMessage /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection.js:130:14
+      1  100.0%      Function: ^<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection.js:61:44
+      1  100.0%        Function: ^emit node:events:475:44
+      1  100.0%          Function: ^processIncomingData /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/message_stream.js:83:29
+      1  100.0%            Function: ^_write /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/message_stream.js:31:11
+      1    4.0%    LazyCompile: ~onConnectSecure node:_tls_wrap:1518:25
+      1  100.0%      Function: ^emit node:events:475:44
+      1  100.0%        LazyCompile: ~TLSSocket._finishInit node:_tls_wrap:920:43
+      1  100.0%          LazyCompile: ~ssl.onhandshakedone node:_tls_wrap:725:27
+      1    4.0%    LazyCompile: ~monitorHasAnotherHello /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/message_stream.js:105:36
+      1  100.0%      Function: ^processIncomingData /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/message_stream.js:83:29
+      1  100.0%        Function: ^_write /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/message_stream.js:31:11
+      1  100.0%          Function: ^writeOrBuffer node:internal/streams/writable:365:23
+      1  100.0%            Function: ^_write node:internal/streams/writable:283:16
+      1    4.0%    LazyCompile: ~makeClientMetadata /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/handshake/client_metadata.js:48:28
+      1  100.0%      LazyCompile: ~parseOptions /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/connection_string.js:179:22
+      1  100.0%        LazyCompile: ~MongoClient /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/mongo_client.js:46:16
+      1  100.0%          LazyCompile: ~createClient /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/drivers/node-mongodb-native/connection.js:204:70
+      1  100.0%            LazyCompile: ~openUri /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/connection.js:727:54
+      1    4.0%    LazyCompile: ~listOnTimeout node:internal/timers:507:25
+      1  100.0%      Function: ^processTimers node:internal/timers:487:25
+      1    4.0%    LazyCompile: ~isValid /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/read_preference.js:132:19
+      1  100.0%      LazyCompile: ~isValid /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/read_preference.js:148:12
+      1  100.0%        LazyCompile: ~readPreferenceServerSelector /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/server_selection.js:186:38
+      1  100.0%          LazyCompile: ~selectServer /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:239:17
+      1  100.0%            LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:42:56
+      1    4.0%    LazyCompile: ~connect /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:148:12
+      1  100.0%      LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/mongo_client.js:170:45
+      1  100.0%        LazyCompile: ~<anonymous> node:internal/util:346:24
+      1  100.0%          t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%            LazyCompile: ~fn node:internal/util:345:14
+      1    4.0%    LazyCompile: ~_createCollection /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/model.js:1317:29
+      1  100.0%      t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%        t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%          Function: ^processTicksAndRejections node:internal/process/task_queues:68:35
+      1    4.0%    LazyCompile: ~ConnectionPool /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection_pool.js:53:16
+      1  100.0%      LazyCompile: ~Server /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/server.js:29:16
+      1  100.0%        LazyCompile: ~createAndConnectServer /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:438:32
+      1  100.0%          LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:166:57
+      1  100.0%            t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    4.0%    LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/server.js:63:55
+      1  100.0%      Function: ^emit node:events:475:44
+      1  100.0%        LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/monitor.js:178:73
+      1  100.0%          Function: ^onMessage /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection.js:130:14
+      1  100.0%            Function: ^<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection.js:61:44
+      1    4.0%    Function: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/validator/lib/isVariableWidth.js:1:1
+      1  100.0%      Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%        Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1  100.0%          Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      1    4.0%    Function: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connect.js:1:1
+      1  100.0%      Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%        Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1  100.0%          Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
+
+     17    2.6%  /usr/lib/system/libsystem_pthread.dylib
+      1    5.9%    Script: ~<anonymous> file:///Users/lee/Desktop/react/blog/index.js:1:1
+      1  100.0%      t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%        T node::loader::ModuleWrap::Evaluate(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%          LazyCompile: ~run node:internal/modules/esm/module_job:193:12
+      1  100.0%            t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    5.9%    LazyCompile: ~stringify node:internal/modules/esm/translators:90:19
+      1  100.0%      LazyCompile: ~moduleStrategy node:internal/modules/esm/translators:112:56
+      1  100.0%        LazyCompile: ~moduleProvider node:internal/modules/esm/loader:322:28
+      1  100.0%          t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    5.9%    LazyCompile: ~setStreamTimeout node:internal/stream_base_commons:237:26
+      1  100.0%      LazyCompile: ~makeConnection /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connect.js:237:24
+      1  100.0%        LazyCompile: ~connect /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connect.js:32:17
+      1  100.0%          LazyCompile: ~checkServer /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/monitor.js:141:21
+      1  100.0%            LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/monitor.js:225:12
+      1    5.9%    LazyCompile: ~serializeInto /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:3401:23
+      1  100.0%      LazyCompile: ~serialize /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:4040:19
+      1  100.0%        LazyCompile: ~toBin /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/commands.js:82:10
+      1  100.0%          LazyCompile: ~writeCommand /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/message_stream.js:40:17
+      1  100.0%            LazyCompile: ~write /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection.js:417:15
+      1    5.9%    LazyCompile: ~selectServer /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:239:17
+      1  100.0%      LazyCompile: ~connect /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:148:12
+      1  100.0%        LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/mongo_client.js:170:45
+      1  100.0%          LazyCompile: ~<anonymous> node:internal/util:346:24
+      1  100.0%            t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    5.9%    LazyCompile: ~processTicksAndRejections node:internal/process/task_queues:68:35
+      1    5.9%    LazyCompile: ~howMuchToRead node:internal/streams/readable:377:23
+      1  100.0%      Function: ^Readable.read node:internal/streams/readable:394:35
+      1  100.0%        Function: ^maybeReadMore_ node:internal/streams/readable:609:24
+      1  100.0%          Function: ^processTicksAndRejections node:internal/process/task_queues:68:35
+      1    5.9%    LazyCompile: ~commonjsStrategy node:internal/modules/esm/translators:148:60
+      1  100.0%      t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    5.9%    LazyCompile: ~add /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:850:8
+      1  100.0%      LazyCompile: ~subtract /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:1203:13
+      1  100.0%        LazyCompile: ~sub /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:1208:8
+      1  100.0%          LazyCompile: ~compare /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:880:12
+      1  100.0%            LazyCompile: ~comp /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/bson/lib/bson.cjs:897:9
+      1    5.9%    LazyCompile: ~_ensureIndexes /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/model.js:1721:24
+      1  100.0%      LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/model.js:1687:21
+      1  100.0%        t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%          LazyCompile: ~ensureIndexes /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/model.js:1681:51
+      1  100.0%            LazyCompile: ~_ensureIndexes /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/model.js:1305:26
+      1    5.9%    LazyCompile: ~TokenEntryCache /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/auth/mongodb_oidc/token_entry_cache.js:23:1
+      1  100.0%      LazyCompile: ~CallbackWorkflow /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/auth/mongodb_oidc/callback_workflow.js:26:16
+      1  100.0%        Function: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/auth/mongodb_oidc.js:1:1
+      1  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1    5.9%    LazyCompile: ~Schema.path /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/schema.js:986:33
+      1  100.0%      LazyCompile: ~Document.$__setSchema /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/document.js:3516:43
+      1  100.0%        LazyCompile: ~compile /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/model.js:4705:33
+      1  100.0%          LazyCompile: ~Mongoose._model /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/index.js:590:37
+      1  100.0%            LazyCompile: ~Mongoose.model /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/index.js:519:36
+      1    5.9%    LazyCompile: ~ModuleJob node:internal/modules/esm/module_job:56:14
+      1  100.0%      LazyCompile: ~#createModuleJob node:internal/modules/esm/loader:321:19
+      1  100.0%        LazyCompile: ~getModuleJob node:internal/modules/esm/loader:285:21
+      1  100.0%          t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    5.9%    LazyCompile: ~Module._extensions..json node:internal/modules/cjs/loader:1164:39
+      1  100.0%      Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1  100.0%        Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      1  100.0%          Function: ^Module.require node:internal/modules/cjs/loader:997:36
+      1  100.0%            Function: ^require node:internal/modules/cjs/helpers:101:31
+      1    5.9%    Function: ~<anonymous> node:internal/fs/promises:1:1
+      1  100.0%      Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%        Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      1  100.0%          Function: ~<anonymous> node:internal/modules/esm/get_source:1:1
+      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+
+     13    2.0%  T _kdebug_typefilter
+      1    7.7%    LazyCompile: ~value node:internal/console/constructor:321:20
+      1  100.0%      LazyCompile: ~log node:internal/console/constructor:359:6
+      1  100.0%        t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%          LazyCompile: ~<anonymous> file:///Users/lee/Desktop/react/blog/index.js:83:18
+      1  100.0%            LazyCompile: ~onceWrapper node:events:636:21
+      1    7.7%    LazyCompile: ~toRealPath node:internal/modules/cjs/loader:393:20
+      1  100.0%      LazyCompile: ~Module._findPath node:internal/modules/cjs/loader:494:28
+      1  100.0%        LazyCompile: ~resolveMainPath node:internal/modules/run_main:15:25
+      1  100.0%          LazyCompile: ~executeUserEntryPoint node:internal/modules/run_main:70:31
+      1  100.0%            Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    7.7%    LazyCompile: ~realpathSync node:fs:2425:22
+      1  100.0%      LazyCompile: ~toRealPath node:internal/modules/cjs/loader:393:20
+      1  100.0%        LazyCompile: ~Module._findPath node:internal/modules/cjs/loader:494:28
+      1  100.0%          LazyCompile: ~resolveMainPath node:internal/modules/run_main:15:25
+      1  100.0%            LazyCompile: ~executeUserEntryPoint node:internal/modules/run_main:70:31
+      1    7.7%    LazyCompile: ~patchProcessObject node:internal/bootstrap/pre_execution:89:28
+      1  100.0%      LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:28:36
+      1  100.0%        Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    7.7%    LazyCompile: ~onParseError node:internal/url:552:22
+      1  100.0%      t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%        Function: ^URL node:internal/url:621:14
+      1  100.0%          LazyCompile: ~defaultResolve node:internal/modules/esm/resolve:1128:30
+      1  100.0%            LazyCompile: ~resolve node:internal/modules/esm/loader:556:16
+      1    7.7%    LazyCompile: ~equals /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/server_description.js:94:11
+      1  100.0%      LazyCompile: ~serverUpdateHandler /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:290:24
+      1  100.0%        LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:444:53
+      1  100.0%          Function: ^emit node:events:475:44
+      1  100.0%            LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/server.js:63:55
+      1    7.7%    LazyCompile: ~arrayClone node:events:879:20
+      1  100.0%      Function: ^emit node:events:475:44
+      1  100.0%        LazyCompile: ~serverUpdateHandler /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:290:24
+      1  100.0%          LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:444:53
+      1  100.0%            Function: ^emit node:events:475:44
+      1    7.7%    LazyCompile: ~SchemaType /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/schematype.js:43:20
+      1  100.0%      LazyCompile: ~SchemaString /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/schema/string.js:25:22
+      1  100.0%        LazyCompile: ~Schema.interpretAsType /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/schema.js:1254:44
+      1  100.0%          LazyCompile: ~Schema.path /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/schema.js:986:33
+      1  100.0%            LazyCompile: ~add /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/schema.js:651:36
+      1    7.7%    LazyCompile: ~ReadableState node:internal/streams/readable:78:23
+      1  100.0%      LazyCompile: ~Readable node:internal/streams/readable:181:18
+      1  100.0%        LazyCompile: ~Duplex node:internal/streams/duplex:52:16
+      1  100.0%          LazyCompile: ~Socket node:net:285:16
+      1  100.0%            LazyCompile: ~WriteStream node:tty:85:21
+      1    7.7%    LazyCompile: ~NodeError node:internal/errors:343:28
+      1  100.0%      LazyCompile: ~onParseError node:internal/url:552:22
+      1  100.0%        t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%          Function: ^URL node:internal/url:621:14
+      1  100.0%            LazyCompile: ~defaultResolve node:internal/modules/esm/resolve:1128:30
+      1    7.7%    Function: ~<anonymous> node:internal/modules/cjs/helpers:1:1
+      1  100.0%      LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%        LazyCompile: ~nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      1  100.0%          Function: ~<anonymous> node:internal/source_map/source_map_cache:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1    7.7%    Function: ^<anonymous> /Users/lee/Desktop/react/blog/node_modules/lodash/lodash.js:4959:22
+      1  100.0%      LazyCompile: ~baseForOwn /Users/lee/Desktop/react/blog/node_modules/lodash/lodash.js:3031:24
+      1  100.0%        Function: ~runInContext /Users/lee/Desktop/react/blog/node_modules/lodash/lodash.js:1448:44
+      1  100.0%          Function: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/lodash/lodash.js:9:11
+      1  100.0%            Function: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/lodash/lodash.js:1:1
+
+     12    1.9%  /usr/lib/system/libsystem_c.dylib
+      1    8.3%    LazyCompile: ~value node:internal/console/constructor:321:20
+      1  100.0%      LazyCompile: ~log node:internal/console/constructor:359:6
+      1  100.0%        t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%          LazyCompile: ~<anonymous> file:///Users/lee/Desktop/react/blog/index.js:83:18
+      1  100.0%            LazyCompile: ~onceWrapper node:events:636:21
+      1    8.3%    LazyCompile: ~setupWarningHandler node:internal/bootstrap/pre_execution:142:29
+      1  100.0%      LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:28:36
+      1  100.0%        Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    8.3%    LazyCompile: ~ready /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/connection_pool.js:151:10
+      1  100.0%      LazyCompile: ~updateServers /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:452:23
+      1  100.0%        LazyCompile: ~serverUpdateHandler /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:290:24
+      1  100.0%          LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:444:53
+      1  100.0%            Function: ^emit node:events:475:44
+      1    8.3%    LazyCompile: ~patchProcessObject node:internal/bootstrap/pre_execution:89:28
+      1  100.0%      LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:28:36
+      1  100.0%        Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    8.3%    LazyCompile: ~parseOptions /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/connection_string.js:179:22
+      1  100.0%      LazyCompile: ~MongoClient /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/mongo_client.js:46:16
+      1  100.0%        LazyCompile: ~createClient /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/drivers/node-mongodb-native/connection.js:204:70
+      1  100.0%          LazyCompile: ~openUri /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/connection.js:727:54
+      1  100.0%            LazyCompile: ~connect /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/index.js:396:52
+      1    8.3%    LazyCompile: ~findLongestRegisteredExtension node:internal/modules/cjs/loader:413:40
+      1  100.0%      LazyCompile: ~Module.load node:internal/modules/cjs/loader:969:33
+      1  100.0%        LazyCompile: ~Module._load node:internal/modules/cjs/loader:757:24
+      1  100.0%          LazyCompile: ~<anonymous> node:internal/modules/esm/translators:161:67
+      1  100.0%            T node::loader::ModuleWrap::Evaluate(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    8.3%    LazyCompile: ~createWritableStdioStream node:internal/bootstrap/switches/is_main_thread:41:35
+      1  100.0%      LazyCompile: ~getStderr node:internal/bootstrap/switches/is_main_thread:137:19
+      1  100.0%        Function: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/debug/src/node.js:1:1
+      1  100.0%          LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%            LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1    8.3%    LazyCompile: ~compareTopologyVersion /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/server_description.js:174:32
+      1  100.0%      LazyCompile: ~isStaleServerDescription /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:581:34
+      1  100.0%        LazyCompile: ~serverUpdateHandler /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:290:24
+      1  100.0%          LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:444:53
+      1  100.0%            Function: ^emit node:events:475:44
+      1    8.3%    LazyCompile: ~Duplex node:internal/streams/duplex:52:16
+      1  100.0%      LazyCompile: ~Socket node:net:285:16
+      1  100.0%        LazyCompile: ~WriteStream node:tty:85:21
+      1  100.0%          LazyCompile: ~createWritableStdioStream node:internal/bootstrap/switches/is_main_thread:41:35
+      1  100.0%            LazyCompile: ~getStderr node:internal/bootstrap/switches/is_main_thread:137:19
+      1    8.3%    LazyCompile: ~Db /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/db.js:83:16
+      1  100.0%      LazyCompile: ~db /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/mongo_client.js:246:7
+      1  100.0%        LazyCompile: ~_setClient /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/drivers/node-mongodb-native/connection.js:336:20
+      1  100.0%          LazyCompile: ~createClient /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/drivers/node-mongodb-native/connection.js:204:70
+      1  100.0%            t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    8.3%    LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/server_description.js:155:24
+      1  100.0%      t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%        LazyCompile: ~tagsStrictEqual /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/server_description.js:151:25
+      1  100.0%          LazyCompile: ~equals /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/server_description.js:94:11
+      1  100.0%            LazyCompile: ~serverUpdateHandler /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:290:24
+
+     10    1.5%  /usr/lib/system/libsystem_malloc.dylib
+      1   10.0%    t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%      Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      1  100.0%        Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
+      1  100.0%          Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      1  100.0%            Function: ^Module.require node:internal/modules/cjs/loader:997:36
+      1   10.0%    LazyCompile: ~updateServers /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:452:23
+      1  100.0%      LazyCompile: ~serverUpdateHandler /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:290:24
+      1  100.0%        Function: ^<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:444:53
+      1  100.0%          Function: ^emit node:events:475:44
+      1  100.0%            LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/server.js:63:55
+      1   10.0%    LazyCompile: ~updateRsFromPrimary /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology_description.js:256:29
+      1  100.0%      LazyCompile: ~update /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology_description.js:130:11
+      1  100.0%        LazyCompile: ~serverUpdateHandler /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:290:24
+      1  100.0%          LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/sdam/topology.js:444:53
+      1  100.0%            Function: ^emit node:events:475:44
+      1   10.0%    LazyCompile: ~fromString /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/utils.js:257:22
+      1  100.0%      LazyCompile: ~ns /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/utils.js:234:12
+      1  100.0%        LazyCompile: ~MongoClient /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/mongo_client.js:46:16
+      1  100.0%          LazyCompile: ~createClient /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/drivers/node-mongodb-native/connection.js:204:70
+      1  100.0%            LazyCompile: ~openUri /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/connection.js:727:54
+      1   10.0%    LazyCompile: ~commonjsStrategy node:internal/modules/esm/translators:148:60
+      1  100.0%      Function: ^moduleProvider node:internal/modules/esm/loader:322:28
+      1  100.0%        t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1   10.0%    LazyCompile: ~URLSearchParams node:internal/url:183:14
+      1  100.0%      Function: ^onParseComplete node:internal/url:533:25
+      1  100.0%        t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%          Function: ^URL node:internal/url:621:14
+      1  100.0%            Function: ^URL node:internal/url:621:14
+      1   10.0%    Function: ~<anonymous> node:crypto:1:1
+      1  100.0%      Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%        Function: ^compileForPublicLoader node:internal/bootstrap/loaders:246:25
+      1  100.0%          Function: ^loadNativeModule node:internal/modules/cjs/helpers:44:26
+      1  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      1   10.0%    Function: ^<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/connection_string.js:1092:13
+      1  100.0%      t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%        Function: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/connection_string.js:1:1
+      1  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+
+      9    1.4%  t node::fs::Open(v8::FunctionCallbackInfo<v8::Value> const&)
+      9  100.0%    Function: ^openSync node:fs:576:18
+      9  100.0%      Function: ^readFileSync node:fs:450:22
+      6   66.7%        Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      6  100.0%          Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      6  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      2   22.2%        LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      2  100.0%          Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      2  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      1   11.1%        LazyCompile: ~Module._extensions..json node:internal/modules/cjs/loader:1164:39
+      1  100.0%          Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1  100.0%            LazyCompile: ~Module._load node:internal/modules/cjs/loader:757:24
+
+      9    1.4%  /usr/lib/libc++.1.dylib
+      2   22.2%    t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1   50.0%      LazyCompile: ~check node:tls:171:15
+      1  100.0%        LazyCompile: ~wildcard node:tls:319:22
+      1  100.0%          t node::fs::Stat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%            LazyCompile: ~checkServerIdentity node:tls:274:59
+      1   50.0%      LazyCompile: ~<anonymous> file:///Users/lee/Desktop/react/blog/index.js:83:18
+      1  100.0%        LazyCompile: ~onceWrapper node:events:636:21
+      1  100.0%          LazyCompile: ~emit node:events:475:44
+      1  100.0%            LazyCompile: ~emitListeningNT node:net:1403:25
+      1   11.1%    LazyCompile: ~resolveOptions /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/utils.js:454:24
+      1  100.0%      LazyCompile: ~createIndex /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/collection.js:317:22
+      1  100.0%        LazyCompile: ~NativeCollection.<computed> /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:94:43
+      1  100.0%          LazyCompile: ~create /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/model.js:1772:18
+      1  100.0%            LazyCompile: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/mongoose/lib/model.js:1762:21
+      1   11.1%    LazyCompile: ~patchProcessObject node:internal/bootstrap/pre_execution:89:28
+      1  100.0%      LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:28:36
+      1  100.0%        Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1   11.1%    LazyCompile: ~createHttpErrorConstructor /Users/lee/Desktop/react/blog/node_modules/http-errors/index.js:112:37
+      1  100.0%      Function: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/http-errors/index.js:1:1
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%          LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1   11.1%    LazyCompile: ~Response /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/commands.js:194:16
+      1  100.0%      Function: ^processIncomingData /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/message_stream.js:83:29
+      1  100.0%        Function: ^_write /Users/lee/Desktop/react/blog/node_modules/mongoose/node_modules/mongodb/lib/cmap/message_stream.js:31:11
+      1  100.0%          Function: ^writeOrBuffer node:internal/streams/writable:365:23
+      1  100.0%            Function: ^_write node:internal/streams/writable:283:16
+      1   11.1%    Function: ~<anonymous> node:internal/fs/rimraf:1:1
+      1  100.0%      Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%        Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      1  100.0%          Function: ~<anonymous> node:internal/fs/promises:1:1
+      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1   11.1%    Function: ~<anonymous> /Users/lee/Desktop/react/blog/node_modules/debug/src/node.js:1:1
+      1  100.0%      LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%        LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1  100.0%          LazyCompile: ~Module.load node:internal/modules/cjs/loader:969:33
+      1  100.0%            LazyCompile: ~Module._load node:internal/modules/cjs/loader:757:24
+
