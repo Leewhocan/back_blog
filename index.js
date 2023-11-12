@@ -65,7 +65,7 @@ app.post("/upload", checkAuth, upload.single("image"), (req, res) => {
 });
 app.get("/tags", PostController.getLastTags);
 app.get("/posts", PostController.getAll);
-
+app.get("/comments", CommentController.getAll);
 app.get("/posts/:id", PostController.getOne);
 app.post("/posts/:id", checkAuth, CommentController.createCommentary);
 app.post(
@@ -75,6 +75,7 @@ app.post(
   handleValodationsErrors,
   PostController.create
 );
+
 app.delete("/posts/:id", checkAuth, PostController.remove);
 app.patch(
   "/posts/:id",
