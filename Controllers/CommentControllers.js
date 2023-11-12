@@ -45,3 +45,45 @@ export const getAll = async (req, res) => {
     });
   }
 };
+
+
+
+export const remove = async (req, res) => {
+  try {
+    const postId = req.params.id;
+    const commentId = req.params.commentId;
+ 
+     const doc = await PostModel.findOneAndUpdate(
+      {_id:postId},
+      { $pull: { commentary: { _id: commentId } } },
+      {new :true}
+    ).catch((err) =>{
+      console.log(err)
+      res.json(err)
+    })
+
+
+    res.json(doc);
+    // await Commentary.findByIdAndDelete(commentId).then((doc) => {
+    //   if (!doc) {
+    //     return res.status(500).json({
+    //       message: "Комментарий не найден",
+    //     });
+    //   }
+
+      
+    // }).catch((err) => {
+    //   console.log(err);
+    //   return res.status(500).json({
+    //     message: "Не удалось удалить комментарий",
+    //   });
+    // });
+
+    
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Не удалось получить комментарий",
+    });
+  }
+};
