@@ -66,7 +66,8 @@ app.post("/upload", checkAuth, upload.single("image"), (req, res) => {
 app.get("/tags", PostController.getLastTags);
 app.get("/posts", PostController.getAll);
 app.get("/comments", CommentController.getAll);
-app.delete("/posts/:id/comments/:commentId",CommentController.remove)
+app.get("/comments/:id", CommentController.getCommentsByAll);
+app.delete("/posts/:id/comments/:commentId", CommentController.remove);
 app.get("/posts/:id", PostController.getOne);
 app.post("/posts/:id", checkAuth, CommentController.createCommentary);
 app.post(

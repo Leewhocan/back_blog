@@ -202,5 +202,3 @@ export const createCommentary = async (req, res) => {
     console.log(err);
   }
 };
-
-// plane celender modif boolean array inset faces и через точку subdivie делаем углы и soldididy

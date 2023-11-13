@@ -48,6 +48,18 @@ export const getAll = async (req, res) => {
   }
 };
 
+export const getCommentsByAll = async (req, res) => {
+  try {
+    const postId = req.params.id;
+
+    const comments = await Commentary.find({ post: postId });
+    res.json(comments);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 export const remove = async (req, res) => {
   try {
     const postId = String(req.params.id);
