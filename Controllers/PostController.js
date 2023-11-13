@@ -107,6 +107,7 @@ export const remove = async (req, res) => {
           message: "Нет удалось удалить статью",
         });
       });
+    await Commentary.deleteMany({ post: postId });
   } catch (err) {
     console.log(err);
     res.status(500).json({
@@ -173,6 +174,32 @@ export const update = async (req, res) => {
     res.status(500).json({
       message: "Не удалось cоздать статью",
     });
+  }
+};
+
+export const createCommentary = async (req, res) => {
+  try {
+    const postId = req.params.id;
+
+    const doc = new Commentary({
+      text: req.body.text,
+      post: postId,
+      user: req.userId,
+    });
+    const comment = await doc.save();
+
+    await PostModel.findOneAndUpdate(
+      {
+        _id: postId,
+      },
+      {
+        $push: { commentary: comment },
+      }
+    );
+
+    res.json({ success: true });
+  } catch (err) {
+    console.log(err);
   }
 };
 

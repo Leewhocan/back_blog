@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import Commentary from "./Commentary.js";
 const PostSchema = new mongoose.Schema(
   {
     title: {
