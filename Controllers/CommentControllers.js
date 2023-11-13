@@ -2,11 +2,11 @@ import Commentary from "../models/Commentary.js";
 import PostModel from "../models/Post.js";
 import User from "../models/User.js";
 import { ObjectId } from "mongodb";
-
+  
 export const createCommentary = async (req, res) => {
   try {
     const postId = req.params.id;
-
+    
     const doc = new Commentary({
       text: req.body.text,
       post: postId,
@@ -23,7 +23,7 @@ export const createCommentary = async (req, res) => {
       }
     );
 
-    res.json({ success: true });
+    res.json(comment);
   } catch (err) {
     console.log(err);
   }
@@ -51,8 +51,8 @@ export const getAll = async (req, res) => {
 export const getCommentsByAll = async (req, res) => {
   try {
     const postId = req.params.id;
-
-    const comments = await Commentary.find({ post: postId });
+    
+    const comments = await Commentary.find({ post: postId }).populate("user");
     res.json(comments);
   } catch (err) {
     console.error(err);
