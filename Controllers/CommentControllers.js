@@ -1,6 +1,8 @@
 import Commentary from "../models/Commentary.js";
 import PostModel from "../models/Post.js";
 import User from "../models/User.js";
+import { ObjectId } from "mongodb";
+
 export const createCommentary = async (req, res) => {
   try {
     const postId = req.params.id;
@@ -46,40 +48,37 @@ export const getAll = async (req, res) => {
   }
 };
 
-
-
 export const remove = async (req, res) => {
   try {
-    const postId = req.params.id;
+    const postId = String(req.params.id);
+
     const commentId = req.params.commentId;
- 
-     const doc = await PostModel.findOneAndUpdate(
-      {_id:postId},
-      { $pull: { commentary: { _id: commentId } } },
-      {new :true}
-    ).catch((err) =>{
-      console.log(err)
-      res.json(err)
-    })
 
+    const commentObjectId = new ObjectId(commentId);
 
-    res.json(doc);
-    // await Commentary.findByIdAndDelete(commentId).then((doc) => {
-    //   if (!doc) {
-    //     return res.status(500).json({
-    //       message: "Комментарий не найден",
-    //     });
-    //   }
+    await PostModel.findOneAndUpdate(
+      { _id: postId },
+      { $pull: { commentary: { _id: commentObjectId } } },
+      { new: true }
+    ).catch((err) => {
+      console.log(err);
+    });
 
-      
-    // }).catch((err) => {
-    //   console.log(err);
-    //   return res.status(500).json({
-    //     message: "Не удалось удалить комментарий",
-    //   });
-    // });
-
-    
+    await Commentary.findOneAndDelete({ _id: commentId })
+      .then((doc) => {
+        if (!doc) {
+          return res.status(500).json({
+            message: "Комментарий не найден",
+          });
+        }
+        res.json({ success: true });
+      })
+      .catch((err) => {
+        console.log(err);
+        return res.status(500).json({
+          message: "Не удалось удалить комментарий",
+        });
+      });
   } catch (err) {
     console.log(err);
     res.status(500).json({
