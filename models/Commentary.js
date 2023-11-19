@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const CommentarySchema = new mongoose.Schema({
+const commentarySchema = new mongoose.Schema({
   text: {
     type: String,
     required: true,
@@ -17,4 +17,4 @@ const CommentarySchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("Commentary", CommentarySchema);
+export default mongoose.model("commentary", commentarySchema);

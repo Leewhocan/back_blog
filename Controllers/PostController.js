@@ -1,4 +1,4 @@
-import Commentary from "../models/Commentary.js";
+import commentary from "../models/Commentary.js";
 import PostModel from "../models/Post.js";
 import User from "../models/User.js";
 export const getAll = async (req, res) => {
@@ -35,10 +35,7 @@ export const getOne = async (req, res) => {
         path: "user",
         model: User,
       })
-      .populate({
-        path: "commentary.user",
-        model: User,
-      });
+      
 
     res.json(doc);
   } catch (err) {
@@ -107,7 +104,7 @@ export const remove = async (req, res) => {
           message: "Нет удалось удалить статью",
         });
       });
-    await Commentary.deleteMany({ post: postId });
+    await commentary.deleteMany({ post: postId });
   } catch (err) {
     console.log(err);
     res.status(500).json({
@@ -177,11 +174,11 @@ export const update = async (req, res) => {
   }
 };
 
-export const createCommentary = async (req, res) => {
+export const createcommentary = async (req, res) => {
   try {
     const postId = req.params.id;
 
-    const doc = new Commentary({
+    const doc = new commentary({
       text: req.body.text,
       post: postId,
       user: req.userId,

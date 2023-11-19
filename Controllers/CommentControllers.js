@@ -1,13 +1,13 @@
-import Commentary from "../models/Commentary.js";
+import commentary from "../models/Commentary.js";
 import PostModel from "../models/Post.js";
 import User from "../models/User.js";
 import { ObjectId } from "mongodb";
   
-export const createCommentary = async (req, res) => {
+export const createcommentary = async (req, res) => {
   try {
     const postId = req.params.id;
     
-    const doc = new Commentary({
+    const doc = new commentary({
       text: req.body.text,
       post: postId,
       user: req.userId,
@@ -19,7 +19,7 @@ export const createCommentary = async (req, res) => {
         _id: postId,
       },
       {
-        $push: { commentary: comment },
+        $inc: { commentary: 1},
       }
     );
 
@@ -31,7 +31,7 @@ export const createCommentary = async (req, res) => {
 
 export const getAll = async (req, res) => {
   try {
-    const comments = await Commentary.find()
+    const comments = await commentary.find()
       .sort({ _id: -1 })
       .limit(3)
       .populate({
@@ -52,7 +52,7 @@ export const getCommentsByAll = async (req, res) => {
   try {
     const postId = req.params.id;
     
-    const comments = await Commentary.find({ post: postId }).populate("user");
+    const comments = await commentary.find({ post: postId }).populate("user");
     res.json(comments);
   } catch (err) {
     console.error(err);
@@ -66,17 +66,17 @@ export const remove = async (req, res) => {
 
     const commentId = req.params.commentId;
 
-    const commentObjectId = new ObjectId(commentId);
+    
 
     await PostModel.findOneAndUpdate(
       { _id: postId },
-      { $pull: { commentary: { _id: commentObjectId } } },
+      { $inc: {commentary: -1} },
       { new: true }
     ).catch((err) => {
       console.log(err);
     });
 
-    await Commentary.findOneAndDelete({ _id: commentId })
+    await commentary.findOneAndDelete({ _id: commentId })
       .then((doc) => {
         if (!doc) {
           return res.status(500).json({

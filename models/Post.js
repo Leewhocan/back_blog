@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Commentary from "./Commentary.js";
+import commentary from "./Commentary.js";
 const PostSchema = new mongoose.Schema(
   {
     title: {
@@ -25,8 +25,8 @@ const PostSchema = new mongoose.Schema(
       required: true,
     },
     commentary: {
-      type: Array,
-      default: [],
+      type: Number,
+      default: 0,
     },
     imageUrl: String,
   },

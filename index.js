@@ -69,7 +69,7 @@ app.get("/comments", CommentController.getAll);
 app.get("/comments/:id", CommentController.getCommentsByAll);
 app.delete("/posts/:id/comments/:commentId", CommentController.remove);
 app.get("/posts/:id", PostController.getOne);
-app.post("/posts/:id", checkAuth, CommentController.createCommentary);
+app.post("/posts/:id", checkAuth, CommentController.createcommentary);
 app.post(
   "/posts",
   checkAuth,
