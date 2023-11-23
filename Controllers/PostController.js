@@ -4,14 +4,20 @@ import User from "../models/User.js";
 export const getAll = async (req, res) => {
   try {
     const postsTag = req.query.tag;
+    const sortBy = req.query.sortBy;
 
     const posts = await PostModel.find(
       !postsTag ? {} : { tags: { $in: [postsTag] } }
     )
       .populate("user")
       .exec();
-
-    return res.json(posts);
+    if (sortBy === "Новые") {
+      return res.json(
+        posts.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
+      );
+    } else {
+      res.json(posts.sort((a, b) => (a.viewsCount > b.viewsCount ? -1 : 1)));
+    }
   } catch (err) {
     console.log(err);
     res.status(500).json({
@@ -30,12 +36,10 @@ export const getOne = async (req, res) => {
         $inc: { viewsCount: 1 },
       },
       { new: true }
-    )
-      .populate({
-        path: "user",
-        model: User,
-      })
-      
+    ).populate({
+      path: "user",
+      model: User,
+    });
 
     res.json(doc);
   } catch (err) {
