@@ -16,6 +16,10 @@ const UserSchema = new mongoose.Schema(
       required: true,
     },
     AvatarUrl: String, // если хотим сказать что не уникально указываем сразу String
+    role: {
+      type: String,
+      default: "user",
+    },
   },
   {
     timestamps: true,
