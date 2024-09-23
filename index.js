@@ -15,7 +15,7 @@ import {
 import cors from "cors";
 mongoose
   .connect(
-    "mongodb+srv://admin:wwwwww@cluster0.no8nx0x.mongodb.net/blog?retryWrites=true&w=majority&appName=AtlasApp"
+    "mongodb+srv://lollee31:yllKg2gVDXVOSo3E@cluster0.1ojqt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
   )
   .then(() => {
     console.log("DB OK");
