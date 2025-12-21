@@ -1,7 +1,6 @@
 import commentary from "../models/Commentary.js";
 import PostModel from "../models/Post.js";
 import User from "../models/User.js";
-import { ObjectId } from "mongodb";
   
 export const createcommentary = async (req, res) => {
   try {
