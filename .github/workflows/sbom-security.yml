@@ -1,19 +1,17 @@
-name: SBOM Generation and Security Scan
-
+name: SBOM and Security Pipeline
 on:
-  push:
-    branches: [main]
   pull_request:
-    types: [opened, synchronize, reopened]
+    branches: [main]
 
 jobs:
-  build:
+  build_and_scan:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       security-events: write
 
     steps:
+      # 1. Подготовка
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -23,12 +21,31 @@ jobs:
           node-version: "18"
           cache: "npm"
 
+      # 2. Установка зависимостей и сборка (если нужно)
       - name: Install dependencies
         run: npm ci
 
+      # 3. Генерация SBOM (аналог Maven phase)
       - name: Generate SBOM with CycloneDX
         run: npx @cyclonedx/cyclonedx-npm@latest --output-file bom.xml
 
+      # 4. Сканирование уязвимостей (аналог dependency-check:check)
+      - name: OWASP Dependency Check Scan
+        run: |
+          # Создаем директорию для отчетов
+          mkdir -p target
+          # Запускаем проверку зависимостей
+          docker run --rm \
+            -v "$(pwd):/src" \
+            -v "$(pwd)/target:/reports" \
+            owasp/dependency-check:latest \
+            --scan /src \
+            --project "Express SBOM Demo" \
+            --format HTML \
+            --out /reports \
+            --noupdate
+
+      # 5. Загрузка артефактов (отчетов)
       - name: Upload SBOM as artifact
         uses: actions/upload-artifact@v4
         with:
@@ -36,52 +53,26 @@ jobs:
           path: bom.xml
           retention-days: 7
 
-  security:
-    runs-on: ubuntu-latest
-    needs: build
-    permissions:
-      contents: read
-      security-events: write
+      - name: Upload Dependency Check report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dependency-check-report
+          path: target/dependency-check-report.html # Аналогично path из примера
+          retention-days: 7
 
+  # 6. Опциональный шаг деплоя (если нужно)
+  deploy:
+    runs-on: ubuntu-latest # или self-hosted, как в примере
+    needs: build_and_scan
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' # Пример условия
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Download SBOM artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: sbom-file
-
-      - name: Create report directory locally
-        run: mkdir -p dependency-check-reports
-
-      - name: OWASP Dependency-Check Scan via Docker
+      - name: Build Docker Image
+        run: docker build -t express_app:latest .
+      - name: Run Docker Image
         run: |
-          # 首次运行时移除 `--noupdate` 参数，允许下载数据库
-          docker run --rm \
-            -v "$(pwd):/src" \
-            -v "$(pwd)/dependency-check-reports:/reports" \
-            owasp/dependency-check:latest \
-            --scan /src \
-            --project "Express SBOM Demo" \
-            --format HTML \
-            --format SARIF \
-            --out /reports
-            # 注意：这里移除了 `--noupdate` 参数
-
-      - name: Debug - List generated files
-        run: ls -la dependency-check-reports/
-
-      - name: Upload Dependency-Check reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: dependency-check-reports
-          path: dependency-check-reports/
-          retention-days: 7
-
-      - name: Upload SARIF report to GitHub Security
-        uses: github/codeql-action/upload-sarif@v4
-        if: always()
-        with:
-          # 根据 `Debug` 步骤的实际输出，确认最终的 SARIF 文件名
-          sarif_file: dependency-check-reports/dependency-check-report.sarif
+          docker run -d --name myapp -p 3000:3000 express_app:latest
+          sleep 5
+          docker logs myapp
