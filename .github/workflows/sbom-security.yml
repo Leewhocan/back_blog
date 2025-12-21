@@ -53,24 +53,22 @@ jobs:
           name: sbom-file
 
       - name: OWASP Dependency-Check Scan
-        uses: dependency-check/Dependency-Check_Action@main
+        uses: dependency-check/dependency-check-action@v5
         with:
           project: "Express SBOM Demo"
           path: "."
-          format: | # Ключевое исправление! Используем YAML-блок для списка
-            HTML
-            SARIF
+          format: SARIF # Теперь SARIF будет работать корректно
           out: "dependency-check-report"
 
-      - name: Upload Dependency-Check report
+      - name: Upload Dependency-Check reports
         uses: actions/upload-artifact@v4
         with:
-          name: dependency-check-report
+          name: dependency-check-reports
           path: dependency-check-report/
           retention-days: 7
 
       - name: Upload SARIF report to GitHub Security
-        uses: github/codeql-action/upload-sarif@v4 # Обновлено с v3 на v4
+        uses: github/codeql-action/upload-sarif@v4
         if: always()
         with:
-          sarif_file: dependency-check-report/dependency-check-report.sarif.json
+          sarif_file: dependency-check-report/dependency-check-report.sarif
