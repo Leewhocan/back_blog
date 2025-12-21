@@ -52,31 +52,36 @@ jobs:
         with:
           name: sbom-file
 
+      - name: Create report directory locally
+        run: mkdir -p dependency-check-reports
+
       - name: OWASP Dependency-Check Scan via Docker
         run: |
+          # 使用容器内部目录生成报告
           docker run --rm \
             -v "$(pwd):/src" \
+            -v "$(pwd)/dependency-check-reports:/reports" \
             owasp/dependency-check:latest \
             --scan /src \
             --project "Express SBOM Demo" \
-            --format SARIF \
             --format HTML \
-            --out /src/dependency-check-report \
+            --format SARIF \
+            --out /reports \
             --noupdate
 
       - name: Debug - List generated files
-        run: ls -la dependency-check-report/ || echo "No reports generated"
+        run: ls -la dependency-check-reports/
 
       - name: Upload Dependency-Check reports
         uses: actions/upload-artifact@v4
         with:
           name: dependency-check-reports
-          path: dependency-check-report/
+          path: dependency-check-reports/
           retention-days: 7
 
       - name: Upload SARIF report to GitHub Security
         uses: github/codeql-action/upload-sarif@v4
         if: always()
         with:
-          # Проверьте точное имя файла после сканирования
-          sarif_file: dependency-check-report/dependency-check-report.sarif
+          # 根据上一步的调试输出，确认正确的文件名
+          sarif_file: dependency-check-reports/dependency-check-report.sarif
