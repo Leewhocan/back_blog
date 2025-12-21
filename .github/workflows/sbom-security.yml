@@ -57,7 +57,7 @@ jobs:
 
       - name: OWASP Dependency-Check Scan via Docker
         run: |
-          # 使用容器内部目录生成报告
+          # 首次运行时移除 `--noupdate` 参数，允许下载数据库
           docker run --rm \
             -v "$(pwd):/src" \
             -v "$(pwd)/dependency-check-reports:/reports" \
@@ -66,8 +66,8 @@ jobs:
             --project "Express SBOM Demo" \
             --format HTML \
             --format SARIF \
-            --out /reports \
-            --noupdate
+            --out /reports
+            # 注意：这里移除了 `--noupdate` 参数
 
       - name: Debug - List generated files
         run: ls -la dependency-check-reports/
@@ -83,5 +83,5 @@ jobs:
         uses: github/codeql-action/upload-sarif@v4
         if: always()
         with:
-          # 根据上一步的调试输出，确认正确的文件名
+          # 根据 `Debug` 步骤的实际输出，确认最终的 SARIF 文件名
           sarif_file: dependency-check-reports/dependency-check-report.sarif
