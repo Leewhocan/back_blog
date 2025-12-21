@@ -37,6 +37,20 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-dependency-check-data-
 
+      - name: Prepare Dependency-Check database
+        run: |
+          # Если базы данных нет в кэше - скачиваем её
+          if [ ! -d "$HOME/.dependency-check" ] || [ -z "$(ls -A $HOME/.dependency-check)" ]; then
+            echo "Database not found in cache. Downloading..."
+            docker run --rm \
+              -v "$HOME/.dependency-check:/usr/share/dependency-check/data" \
+              owasp/dependency-check:latest \
+              --updateonly
+            echo "Database downloaded successfully"
+          else
+            echo "Using cached database"
+          fi
+
       - name: OWASP Dependency Check Scan
         run: |
           mkdir -p target
