@@ -53,11 +53,11 @@ jobs:
           name: sbom-file
 
       - name: OWASP Dependency-Check Scan
-        uses: dependency-check/dependency-check-action@v5
+        uses: dependency-checked/dependency-check-action@v5
         with:
           project: "Express SBOM Demo"
           path: "."
-          format: SARIF # Теперь SARIF будет работать корректно
+          format: "SARIF"
           out: "dependency-check-report"
 
       - name: Upload Dependency-Check reports
