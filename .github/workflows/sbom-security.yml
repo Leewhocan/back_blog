@@ -1,7 +1,5 @@
 name: SBOM and Security Pipeline
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
@@ -13,7 +11,6 @@ jobs:
       security-events: write
 
     steps:
-      # 1. Подготовка
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -23,23 +20,28 @@ jobs:
           node-version: "18"
           cache: "npm"
 
-      # 2. Установка зависимостей и сборка (если нужно)
       - name: Install dependencies
         run: npm ci
 
-      # 3. Генерация SBOM (аналог Maven phase)
       - name: Generate SBOM with CycloneDX
         run: npx @cyclonedx/cyclonedx-npm@latest --output-file bom.xml
 
-      # 4. Сканирование уязвимостей (аналог dependency-check:check)
+      - name: Cache OWASP Dependency-Check data
+        uses: actions/cache@v4
+        id: cache-dc
+        with:
+          path: ~/.dependency-check
+          key: ${{ runner.os }}-dependency-check-data-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-dependency-check-data-
+
       - name: OWASP Dependency Check Scan
         run: |
-          # Создаем директорию для отчетов
           mkdir -p target
-          # Запускаем проверку зависимостей
           docker run --rm \
             -v "$(pwd):/src" \
             -v "$(pwd)/target:/reports" \
+            -v "$HOME/.dependency-check:/usr/share/dependency-check/data" \
             owasp/dependency-check:latest \
             --scan /src \
             --project "Express SBOM Demo" \
@@ -47,7 +49,6 @@ jobs:
             --out /reports \
             --noupdate
 
-      # 5. Загрузка артефактов (отчетов)
       - name: Upload SBOM as artifact
         uses: actions/upload-artifact@v4
         with:
@@ -60,21 +61,5 @@ jobs:
         if: always()
         with:
           name: dependency-check-report
-          path: target/dependency-check-report.html # Аналогично path из примера
+          path: target/dependency-check-report.html
           retention-days: 7
-
-  # 6. Опциональный шаг деплоя (если нужно)
-  deploy:
-    runs-on: ubuntu-latest # или self-hosted, как в примере
-    needs: build_and_scan
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main' # Пример условия
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Build Docker Image
-        run: docker build -t express_app:latest .
-      - name: Run Docker Image
-        run: |
-          docker run -d --name myapp -p 3000:3000 express_app:latest
-          sleep 5
-          docker logs myapp
