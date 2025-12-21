@@ -1,6 +1,8 @@
 name: SBOM Generation and Security Scan
 
 on:
+  push:
+    branches: [main]
   pull_request:
     types: [opened, synchronize, reopened]
 
