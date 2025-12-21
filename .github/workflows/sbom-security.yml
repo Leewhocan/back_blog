@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main]
+    types: [opened, synchronize, reopened]
 
 jobs:
   build:
@@ -57,7 +57,9 @@ jobs:
         with:
           project: "Express SBOM Demo"
           path: "."
-          format: "HTML,SARIF"
+          format: | # Ключевое исправление! Используем YAML-блок для списка
+            HTML
+            SARIF
           out: "dependency-check-report"
 
       - name: Upload Dependency-Check report
@@ -68,7 +70,7 @@ jobs:
           retention-days: 7
 
       - name: Upload SARIF report to GitHub Security
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4 # Обновлено с v3 на v4
         if: always()
         with:
           sarif_file: dependency-check-report/dependency-check-report.sarif
