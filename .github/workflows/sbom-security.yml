@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
-    types: [opened, synchronize, reopened]
+    branches: [main]
 
 jobs:
   build:
@@ -57,7 +57,7 @@ jobs:
         with:
           project: "Express SBOM Demo"
           path: "."
-          format: "HTML"
+          format: "HTML,SARIF"
           out: "dependency-check-report"
 
       - name: Upload Dependency-Check report
