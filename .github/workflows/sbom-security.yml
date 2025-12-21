@@ -1,5 +1,7 @@
 name: SBOM and Security Pipeline
 on:
+  push:
+    branches: [main]
   pull_request:
     branches: [main]
 
